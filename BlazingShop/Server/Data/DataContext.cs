@@ -25,9 +25,10 @@ namespace BlazingShop.Server.Data
                 .HasKey(p => new { p.ProductId, p.EditionId });
 
             modelBuilder.Entity<Category>().HasData(
-                new Category { Id = 1, Name = "Books", Url = "books", Icon = "book" },
-                new Category { Id = 2, Name = "Electronics", Url = "electronics", Icon = "camera-slr" },
-                new Category { Id = 3, Name = "Video Games", Url = "video-games", Icon = "aperture" }
+                new Category { Id = 1, Name = "Chanel", Url = "chanel"},
+                new Category { Id = 2, Name = "Gucci", Url = "gucci"},
+                new Category { Id = 3, Name = "Dior", Url = "dior"},
+                new Category { Id = 4, Name = "LouisVuitton", Url = "louisvuitton" }
             );
 
             modelBuilder.Entity<Product>().HasData(

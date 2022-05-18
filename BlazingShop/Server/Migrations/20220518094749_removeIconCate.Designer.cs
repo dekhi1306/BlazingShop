@@ -4,14 +4,16 @@ using BlazingShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlazingShop.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220518094749_removeIconCate")]
+    partial class removeIconCate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,26 +42,20 @@ namespace BlazingShop.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Chanel",
-                            Url = "chanel"
+                            Name = "Books",
+                            Url = "books"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Gucci",
-                            Url = "gucci"
+                            Name = "Electronics",
+                            Url = "electronics"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Dior",
-                            Url = "dior"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "LouisVuitton",
-                            Url = "louisvuitton"
+                            Name = "Video Games",
+                            Url = "video-games"
                         });
                 });
 
