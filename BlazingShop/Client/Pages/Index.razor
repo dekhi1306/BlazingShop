@@ -5,23 +5,12 @@
 @inject ISyncLocalStorageService LocalStorage
 @inject IStatsService StatsService 
 
-@if (category != null)
-{
-    <h1>Welcome to the @category.Name section!</h1>
-    <ProductList />
-}
-else
-{
-    <AuthorizeView>
-        <NotAuthorized>
-            <h1>Welcome to Blazing Shop!</h1>
-        </NotAuthorized>
-        <Authorized>
-            <h1>Welcome back, @LocalStorage.GetItemAsString("username")!</h1>
-        </Authorized>
-    </AuthorizeView>
-    <ProductList />
-}
+<AuthorizeView>
+    <Authorized>
+        <h1>Xin chào, @LocalStorage.GetItemAsString("username")!</h1>
+    </Authorized>
+</AuthorizeView>
+<ProductList />
 
 @code
 {

@@ -18,13 +18,13 @@
         @context.Title
     </ResultTemplate>
     <NotFoundTemplate>
-        Sorry, there weren't any products found.
+        Xin lỗi, không có sản phẩm quý khách cần tìm.
     </NotFoundTemplate>
 </BlazoredTypeahead>
 
 <a href="cart" class="btn btn-info">
     <i class="oi oi-cart"></i>
-    Cart
+    Giỏ hàng
     <span class="badge badge-pill badge-light">@GetProductCount()</span>
 </a>
 
@@ -44,7 +44,7 @@
 
     private int GetProductCount()
     {
-        var cart = LocalStorage.GetItem<List<ProductVariant>>("cart");
+        var cart = LocalStorage.GetItem<List<Product>>("cart");
         return cart != null ? cart.Count : 0;
     }
 
