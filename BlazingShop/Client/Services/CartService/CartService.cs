@@ -49,7 +49,7 @@ namespace BlazingShop.Client.Services.CartService
             await _localStorage.SetItemAsync("cart", cart);
 
             var product = await _productService.GetProduct(item.ProductId);
-            _toastService.ShowSuccess(product.Title, "Added to cart:");
+            _toastService.ShowSuccess(product.Title, "Đã thêm vào giỏ hàng:");
 
             OnChange.Invoke();
         }

@@ -4,10 +4,10 @@
 
 @if (!orderPlaced)
 {
-    <h3>Shopping Cart</h3>
+    <h3>Giỏ hàng</h3>
     @if (cartItems == null || cartItems.Count <= 0)
     {
-        <span>You have no items in your cart.</span>
+        <span>Không có sản phẩm nào trong giỏ hàng</span>
     }
     else
     {
@@ -19,7 +19,7 @@
                     <div class="item-name">
                         <h5><a href="/product/@item.ProductId">@item.ProductTitle</a></h5>
                         <span>@item.EditionName</span><br />
-                        <button class="btn-delete" @onclick="@(() => DeleteItem(item))">Delete</button>
+                        <button class="btn-delete" @onclick="@(() => DeleteItem(item))">Xoá</button>
                         <EditForm Model="item">
                             <InputNumber id="quantity" @bind-Value="item.Quantity"
                                          class="form-control" style="width: 70px" />
@@ -29,18 +29,18 @@
                 </div>
             }
             <div class="item-price">
-                Total (@cartItems.Count): @formatPrice(cartItems.Sum(item => item.Price * item.Quantity))
+                Tổng cộng (@cartItems.Count): @formatPrice(cartItems.Sum(item => item.Price * item.Quantity))
             </div>
             <div style="text-align: center; margin-top: 10px;">
-                <button class="btn btn-primary btn-lg" @onclick="PlaceOrder">Place Order</button>
+                <button class="btn btn-primary btn-lg" @onclick="PlaceOrder">Đặt hàng</button>
             </div>
         </div>
     }
 }
 else
 {
-    <h3>Thank you for your order!</h3>
-    <h4>Here's what you'll get:</h4>
+    <h3>Cảm ơn quý khách đã mua hàng tại 10Perfurm</h3>
+    <h4>Những sản phẩm đã đặt:</h4>
     <div>
         @foreach (var item in cartItems)
         {
@@ -54,7 +54,7 @@ else
             </div>
         }
         <div class="item-price">
-            Total (@cartItems.Count): @formatPrice(cartItems.Sum(item => item.Price * item.Quantity))
+            Tổng cộng (@cartItems.Count): @formatPrice(cartItems.Sum(item => item.Price * item.Quantity))
         </div>
     </div>
 }
