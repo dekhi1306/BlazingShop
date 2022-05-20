@@ -1,4 +1,5 @@
-﻿@inject IProductService ProductService
+﻿@using System.Globalization
+@inject IProductService ProductService
 @implements IDisposable
 
 <ul class="list-unstyled">
@@ -16,7 +17,7 @@
                 </a>
                 <p>Dung tích: @product.Capacity ml</p>
                 <h5 class="price">
-                    @product.Price VNĐ
+                    @formatPrice(@product.Price)
                 </h5>
             </div>
         </li>
@@ -33,5 +34,16 @@
     public void Dispose()
     {
         ProductService.OnChange -= StateHasChanged;
+    }
+
+    private string formatPrice(int price)
+    {
+        string VietFormat = price.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"));
+        string[] tmp;
+        string res = "";
+
+        tmp = VietFormat.Split('D');
+        res = tmp[1] + " VNĐ";
+        return res;
     }
 }

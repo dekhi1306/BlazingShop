@@ -1,4 +1,5 @@
 ﻿@page "/cart"
+@using System.Globalization
 @inject ICartService CartService
 
 @if (!orderPlaced)
@@ -24,11 +25,11 @@
                                          class="form-control" style="width: 70px" />
                         </EditForm>
                     </div>
-                    <div class="item-price">$@(item.Price * item.Quantity)</div>
+                    <div class="item-price">@formatPrice(item.Price * item.Quantity)</div>
                 </div>
             }
             <div class="item-price">
-                Total (@cartItems.Count): $@cartItems.Sum(item => item.Price * item.Quantity)
+                Total (@cartItems.Count): @formatPrice(cartItems.Sum(item => item.Price * item.Quantity))
             </div>
             <div style="text-align: center; margin-top: 10px;">
                 <button class="btn btn-primary btn-lg" @onclick="PlaceOrder">Place Order</button>
@@ -49,11 +50,11 @@ else
                     <h5><a href="/product/@item.ProductId">@item.ProductTitle</a></h5>
                     <span>@item.EditionName</span><br />
                 </div>
-                <div class="item-price">$@(item.Price * item.Quantity)</div>
+                <div class="item-price">@formatPrice(item.Price * item.Quantity)</div>
             </div>
         }
         <div class="item-price">
-            Total (@cartItems.Count): $@cartItems.Sum(item => item.Price * item.Quantity)
+            Total (@cartItems.Count): @formatPrice(cartItems.Sum(item => item.Price * item.Quantity))
         </div>
     </div>
 }
@@ -77,5 +78,16 @@ else
     {
         orderPlaced = true;
         await CartService.EmptyCart();
+    }
+
+    private string formatPrice(decimal price)
+    {
+        string VietFormat = price.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"));
+        string[] tmp;
+        string res = "";
+
+        tmp = VietFormat.Split('D');
+        res = tmp[1] + " VNĐ";
+        return res;
     }
 }

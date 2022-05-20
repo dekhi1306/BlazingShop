@@ -1,4 +1,5 @@
 ﻿@page "/product/{id:int}"
+@using System.Globalization
 @inject IProductService ProductService
 @inject ICartService CartService 
 @inject ILocalStorageService LocalStorage
@@ -17,7 +18,7 @@
         Nồng độ: @product.Concenstration <br /> 
         <p>Dung tích: @product.Capacity</p> 
         <h4 class="price">
-            @product.Price VNĐ
+            @formatPrice(@product.Price)
         </h4>
         <EditForm Model="cartItem">
             <div class="form-group">
@@ -40,7 +41,7 @@
     protected override async Task OnParametersSetAsync()
     {
         product = await ProductService.GetProduct(Id);
-        
+
     }
 
     private async Task AddToCart()
@@ -63,5 +64,16 @@
             return $"{((float)product.Views / 1000).ToString("#.##")}K";
 
         return product.Views.ToString("0##");
+    }
+
+    private string formatPrice(int price)
+    {
+        string VietFormat = price.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"));
+        string[] tmp;
+        string res = "";
+
+        tmp = VietFormat.Split('D');
+        res = tmp[1] + " VNĐ";
+        return res;
     }
 }
